@@ -27,8 +27,26 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
+---
 
-## 使用套件
+# 使用說明
 
-primeng：https://www.primefaces.org/primeng/#/setup
-bootstrap: 僅使用 css
+## 下載 Sample Code 並使用 VS code 開啟
+
+```
+git clone https://github.com/contemplator/angular-template.git <project-name>
+cd <project-name>
+code. 
+```
+
+## 下載相依賴套件
+
+```
+npm install
+```
+
+## 運行 server
+
+```
+npm start
+```
