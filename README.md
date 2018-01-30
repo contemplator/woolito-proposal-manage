@@ -1,34 +1,3 @@
-# Angular
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.4.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
----
-
 # 使用說明
 
 ## 下載 Sample Code 並使用 VS code 開啟
@@ -50,3 +19,29 @@ npm install
 ```
 npm start
 ```
+
+## 更新 angular、rxjs 及 primeng 套件
+
+for mac
+
+```
+npm install @angular/{common,compiler,compiler-cli,core,forms,http,platform-browser,platform-browser-dynamic,platform-server,router,animations}@latest typescript@latest font-awesome@latest primeng@latest rxjs@latest --save
+```
+
+for windows 
+```
+npm install @angular/common@latest @angular/compiler@latest @angular/compiler-cli@latest @angular/core@latest @angular/forms@latest @angular/http@latest @angular/platform-browser@latest @angular/platform-browser-dynamic@latest @angular/platform-server@latest @angular/router@latest @angular/animations@latest typescript@latest font-awesome@latest primeng@latest rxjs@latest --save
+```
+
+
+# 更新 log
+
+## 2018-01-30 
+1. 更新到 angular 5
+2. 加上 bootstrap css，因為發現 primeng 的 form 樣式在排版上沒有 bootstrap 優美，所以決定加入 bootstrap 套件，但不使用 ng-bootstrap 是因為和 primeng component 功能重複，不習慣的人可以使用以下語法卸載，理想方式是自行有一套樣式
+
+```
+npm uninstall --save bootstrap
+```
+3. 套用 bootstrap 4 的 reboot.css (意義等同於 reset.css、normalize.css)
+
