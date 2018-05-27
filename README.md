@@ -36,6 +36,15 @@ npm install @angular/common@latest @angular/compiler@latest @angular/compiler-cl
 
 # 更新 log
 
+## 2018-05-27
+
+1. 更新到 angular 6，更新方式可參照 [官方提供的網站](https://update.angular.io/)
+2. 變更 HttpModule 為 HttpClientModule
+3. 使用 ng update 新增 angular.json 取代 angular-cli.json
+4. 在 angular.json 新增不產生 spec 測試檔案的設定
+5. 更新 primeng 套件
+6. 更新 rxjs 到 6
+
 ## 2018-01-30 
 1. 更新到 angular 5
 2. 加上 bootstrap css，因為發現 primeng 的 form 樣式在排版上沒有 bootstrap 優美，所以決定加入 bootstrap 套件，但不使用 ng-bootstrap 是因為和 primeng component 功能重複，不習慣的人可以使用以下語法卸載，理想方式是自行有一套樣式
