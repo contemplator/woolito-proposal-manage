@@ -36,6 +36,11 @@ npm install @angular/common@latest @angular/compiler@latest @angular/compiler-cl
 
 # 更新 log
 
+## 2018-12-16
+
+1. 更新到 angular 7，更新方式及說明可參考 [angular 7 upgrade](https://contemplator.github.io/blog/2018/12/16/angular-7-upgrade/)
+2. 移除 font-awesome
+
 ## 2018-05-27
 
 1. 更新到 angular 6，更新方式可參照 [官方提供的網站](https://update.angular.io/)
