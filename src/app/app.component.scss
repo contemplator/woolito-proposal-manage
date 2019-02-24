@@ -1,0 +1,50 @@
+$max-width: 1200px;
+
+.header{
+  max-width: 100%;
+  width: $max-width;
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container{
+  max-width: 100%;
+  width: $max-width;
+  margin: 0px auto;
+  margin-top: 8px;
+  .proposal-actions{
+    button{
+      margin: 0 4px;
+      &:first-child{
+        margin-left: 0;
+      }
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.form-group-H{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 8px 0;
+  label{
+    flex: 0 0 5em;
+    text-align: right;
+    margin-right: 8px;
+  }
+  input{
+    flex: 0 0 calc(100% - 5em - 8px);
+  }
+  .test{
+    flex: 0 0 calc(100% - 5em - 8px);
+  }
+}
+
+input.ng-touched.ng-invalid{
+  border-color: red;
+}

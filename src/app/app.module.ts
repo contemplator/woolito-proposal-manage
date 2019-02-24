@@ -1,27 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ErrorService } from './error.service';
 
-import { DialogModule, ButtonModule } from 'primeng/primeng';
+import { DialogModule, ButtonModule, InputTextModule, AutoCompleteModule } from 'primeng/primeng';
+import { TableModule } from 'primeng/table';
+import { AppService } from './app.service';
+import { TagAutocompleteComponent } from './tag-autocomplete/tag-autocomplete.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TagAutocompleteComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+    ButtonModule,
     DialogModule,
-    ButtonModule
+    InputTextModule,
+    AutoCompleteModule,
+    TableModule
   ],
-  providers: [{ provide: ErrorHandler, useClass: ErrorService }],
+  providers: [
+    { provide: ErrorHandler, useClass: ErrorService },
+    AppService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

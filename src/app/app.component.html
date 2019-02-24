@@ -1,15 +1,116 @@
-<p-dialog header="Godfather I" [(visible)]="display" [modal]="true" [width]="350" [closeOnEscape]="true">
-  <span>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
-    His beloved son Michael has just come home from the war, but does not intend to become part of his father's
-    business.
-    Through Michael's life the nature of the family business becomes clear. The business of the family is just like the
-    head of the family,
-    kind and benevolent to those who give respect,
-    but given to ruthless violence whenever anything stands against the good of the family.</span>
+<div class="header">
+  <div class="ui-inputgroup">
+    <input type="text" pInputText placeholder="輸入關鍵字" [(ngModel)]="keyword" (ngModelChange)="filterProposal($event)" >
+    <button pButton type="button" label="查詢"></button>
+  </div>
+
+  <button pButton type="button" label="新增提案企劃" (click)="onNewProposalClick()"></button>
+</div>
+
+<div class="container">
+  <p-table [columns]="cols" [value]="filtedProposalList">
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup>
+        <col *ngFor="let col of columns" [style.width]="col.width + 'em'">
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{ col.header }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+      <tr>
+        <ng-container *ngFor="let col of columns">
+          <ng-container [ngSwitch]="col.field">
+            <td *ngSwitchCase="'trello_name'">
+              <a [href]="rowData.path" target="_blank">{{ rowData.trello_name }}</a>
+            </td>
+            <td *ngSwitchCase="'labels'">
+              <span class="label-item" *ngFor="let item of rowData.labels">{{ item.name }}</span>
+            </td>
+            <td *ngSwitchCase="'actions'">
+              <div class="proposal-actions">
+                <button pButton type="button" label="發布" (click)="onReleaseClick(rowData)"></button>
+                <button pButton type="button" label="查看發布歷史" (click)="onQueryHistoryClick(rowData)"></button>
+                <button pButton type="button" label="編輯" (click)="onEditProposalClick(rowData)"></button>
+              </div>
+            </td>
+            <td *ngSwitchDefault>{{ rowData[col.field] }}</td>
+          </ng-container>
+        </ng-container>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- 新增/修改提案企劃 -->
+<p-dialog [header]="!editProposal ? '新增提案企劃' : '修改提案企劃'" [(visible)]="showProposalModal" modal="true" width="600">
+  <div *ngIf="!editProposal">
+    請先到 trello woolito-proposal 的 team 下複製提案企劃的基礎看板，複製完成後修改提案企劃的名稱，將 trello 複製後看板資料填到以下欄位
+  </div>
+
+  <form [formGroup]="form">
+    <div class="form-group-H">
+      <label>看板代碼</label>
+      <input type="text" pInputText formControlName="trello_id" />
+    </div>
+
+    <div class="form-group-H">
+      <label>看板名稱</label>
+      <input type="text" pInputText formControlName="trello_name" />
+    </div>
+
+    <div class="form-group-H">
+      <label>廠商</label>
+      <input type="text" pInputText formControlName="customer" />
+    </div>
+
+    <div class="form-group-H">
+      <label>標籤</label>
+      <div class="test">
+        <app-tag-autocomplete formControlName="labels" [suggestions]="filtedLabelList" (completeMethod)="filterLabels($event)" placeholder="tag" [multiple]="true" [inputStyle]="{'width': '100%'}">
+        </app-tag-autocomplete>
+      </div>
+    </div>
+  </form>
+
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
-    <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No" class="ui-button-secondary"></button>
+    <button pButton type="button" label="儲存" (click)="onSaveProposalClick()"></button>
   </p-footer>
 </p-dialog>
 
-<button type="button" (click)="showDialog()" pButton icon="pi pi-info-circle" label="Show"></button>
+<!-- 歷史發布 -->
+<p-dialog header="歷史發布" [(visible)]="showProposalHistoryModal" modal="true" width="600">
+  <p-table [columns]="historyCols" [value]="historyList">
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup>
+        <col *ngFor="let col of columns" [style.width]="col.width + 'em'">
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{ col.header }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+      <tr>
+        <ng-container *ngFor="let col of columns">
+          <ng-container [ngSwitch]="col.field">
+            <td *ngSwitchCase="'path'">
+              <a [href]="rowData[col.field]">{{ rowData[col.field] }}</a>
+            </td>
+            <td *ngSwitchDefault>{{ rowData[col.field] }}</td>
+          </ng-container>
+        </ng-container>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <button pButton type="button" label="關閉" (click)="showProposalHistoryModal = false"></button>
+  </p-footer>
+</p-dialog>

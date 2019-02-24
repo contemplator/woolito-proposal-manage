@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* table */
+body .ui-table .ui-table-tbody > tr > td{
+  padding: .25em .5em;
+}
+/* button */
+body .ui-button.ui-button-text-only .ui-button-text{
+  padding: .25em .5em;
+}
