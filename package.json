@@ -5,10 +5,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.config.json",
-    "build": "ng build",
+    "build": "ng build --prod --aot --base-href=./",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "predeploy": "npm run build",
+    "deploy": "ssh woolito@166.62.30.153 'rm -rf /home/woolito/public_html/proposal-manage' && scp -r ./dist woolito@166.62.30.153:/home/woolito/public_html/proposal-manage"
   },
   "private": true,
   "dependencies": {

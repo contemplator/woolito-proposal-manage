@@ -6,7 +6,7 @@ import { ProposalLabel, ProposalTrello } from './proposal';
 
 @Injectable({ providedIn: 'root' })
 export class AppService {
-  host = 'http://66.42.58.237/proposal/';
+  host = 'http://66.42.58.237:3000/proposal/';
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
