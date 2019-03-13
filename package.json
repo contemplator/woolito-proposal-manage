@@ -9,6 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "sass-lint": "./node_modules/sass-lint/bin/sass-lint.js -c sasslint.yml -v -q",
     "predeploy": "npm run build",
     "deploy": "ssh woolito@166.62.30.153 'rm -rf /home/woolito/public_html/proposal-manage' && scp -r ./dist woolito@166.62.30.153:/home/woolito/public_html/proposal-manage"
   },
@@ -46,6 +47,7 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.0",
+    "sass-lint": "^1.12.1",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "^3.1.6",

@@ -53,24 +53,24 @@
   </div>
 
   <form [formGroup]="form">
-    <div class="form-group-H">
+    <div class="form-group-h">
       <label>看板代碼</label>
       <input type="text" pInputText formControlName="trello_id" />
     </div>
 
-    <div class="form-group-H">
+    <div class="form-group-h">
       <label>看板名稱</label>
       <input type="text" pInputText formControlName="trello_name" />
     </div>
 
-    <div class="form-group-H">
+    <div class="form-group-h">
       <label>廠商</label>
       <input type="text" pInputText formControlName="customer" />
     </div>
 
-    <div class="form-group-H">
+    <div class="form-group-h">
       <label>標籤</label>
-      <div class="test">
+      <div class="auto-complete">
         <app-tag-autocomplete formControlName="labels" [suggestions]="filtedLabelList" (completeMethod)="filterLabels($event)" placeholder="tag" [multiple]="true" [inputStyle]="{'width': '100%'}">
         </app-tag-autocomplete>
       </div>

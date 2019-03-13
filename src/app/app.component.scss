@@ -1,50 +1,69 @@
 $max-width: 1200px;
+$space-unit: 8px;
+$margin-center: 0 auto;
+$color-red: #F00;
 
-.header{
-  max-width: 100%;
-  width: $max-width;
-  margin: 0px auto;
+.header {
   display: flex;
+  margin: $margin-center;
   align-items: center;
   justify-content: space-between;
-}
-
-.container{
   max-width: 100%;
   width: $max-width;
-  margin: 0px auto;
-  margin-top: 8px;
-  .proposal-actions{
-    button{
-      margin: 0 4px;
-      &:first-child{
+}
+
+.container {
+  margin: $margin-center;
+  margin-top: $space-unit;
+  max-width: 100%;
+  width: $max-width;
+
+  .proposal-actions {
+    button {
+      margin: $space-unit;
+
+      &:first-child {
         margin-left: 0;
       }
-      &:last-child{
+
+      &:last-child {
         margin-right: 0;
       }
     }
   }
 }
 
-.form-group-H{
+.form-group-h {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin: 8px 0;
-  label{
+  margin: $space-unit;
+
+  label {
     flex: 0 0 5em;
     text-align: right;
-    margin-right: 8px;
+    margin-right: $space-unit;
   }
-  input{
-    flex: 0 0 calc(100% - 5em - 8px);
+
+  input {
+    min-width: 20em;
   }
-  .test{
-    flex: 0 0 calc(100% - 5em - 8px);
+
+  .auto-complete {
+    flex: 0 0 calc(100% - 5em - #{$space-unit});
+
+    ::ng-deep {
+      .ui-autocomplete-multiple-container {
+        width: 100%;
+      }
+    }
   }
 }
 
-input.ng-touched.ng-invalid{
-  border-color: red;
+input {
+  .ng-touched {
+    .ng-invalid {
+      border-color: $color-red;
+    }
+  }
 }

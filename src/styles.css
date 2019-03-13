@@ -8,3 +8,7 @@ body .ui-table .ui-table-tbody > tr > td{
 body .ui-button.ui-button-text-only .ui-button-text{
   padding: .25em .5em;
 }
+/* modal */
+.ui-dialog-resizable .ui-dialog-content{
+  overflow: visible;
+}
