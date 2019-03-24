@@ -1,6 +1,6 @@
 {
   "name": "proposal-manage",
-  "version": "7.0.0",
+  "version": "1.2.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",

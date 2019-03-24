@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
       { field: 'release_date', header: '發布日期', width: 8 },
       { field: 'version', header: '版本', width: 4 },
       { field: 'labels', header: '標籤', width: 10 },
-      { field: 'actions', header: '操作', width: 10 }
+      { field: 'actions', header: '操作', width: 12 }
     ];
 
     this.historyCols = [

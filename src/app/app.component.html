@@ -1,6 +1,6 @@
 <div class="header">
   <div class="ui-inputgroup">
-    <input type="text" pInputText placeholder="輸入關鍵字" [(ngModel)]="keyword" (ngModelChange)="filterProposal($event)" >
+    <input type="text" pInputText placeholder="輸入關鍵字" [(ngModel)]="keyword" (ngModelChange)="filterProposal($event)">
     <button pButton type="button" label="查詢"></button>
   </div>
 
@@ -34,6 +34,7 @@
             <td *ngSwitchCase="'actions'">
               <div class="proposal-actions">
                 <button pButton type="button" label="發布" (click)="onReleaseClick(rowData)"></button>
+                <a [href]="'http://woooplay.com/proposal-dev/#/' + rowData.trello_id" target="_blank"><button pButton type="button" label="預覽"></button></a>
                 <button pButton type="button" label="查看發布歷史" (click)="onQueryHistoryClick(rowData)"></button>
                 <button pButton type="button" label="編輯" (click)="onEditProposalClick(rowData)"></button>
               </div>
