@@ -1,6 +1,6 @@
 {
   "name": "proposal-manage",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -27,6 +27,7 @@
     "@angular/platform-server": "^7.1.3",
     "@angular/router": "^7.1.3",
     "core-js": "^2.4.1",
+    "date-extension": "git+https://github.com/contemplator/typescript-extension.git",
     "primeicons": "^1.0.0",
     "primeng": "^7.0.3",
     "rxjs": "^6.3.3"

@@ -43,12 +43,12 @@ export class AppComponent implements OnInit {
   initCols(): void {
     this.cols = [
       { field: 'trello_id', header: '看板代碼', width: 4 },
-      { field: 'trello_name', header: '看板名稱', width: 5 },
+      { field: 'trello_name', header: '看板名稱', width: 9 },
       { field: 'customer', header: '廠商', width: 4 },
-      { field: 'release_date', header: '發布日期', width: 8 },
+      { field: 'release_date', header: '發布日期', width: 7 },
       { field: 'version', header: '版本', width: 4 },
-      { field: 'labels', header: '標籤', width: 10 },
-      { field: 'actions', header: '操作', width: 12 }
+      { field: 'labels', header: '標籤', width: 6 },
+      { field: 'actions', header: '操作', width: 13 }
     ];
 
     this.historyCols = [
@@ -63,7 +63,17 @@ export class AppComponent implements OnInit {
    */
   fetchList(): void {
     this.service.query().subscribe(res => {
-      this.proposalList = res;
+      this.proposalList = res.map(item => {
+        const proposal = new ProposalListItem();
+        proposal.trello_id = item.trello_id;
+        proposal.trello_name = item.trello_name;
+        proposal.customer = item.customer;
+        proposal.release_date = item.release_date;
+        proposal.version = item.version;
+        proposal.path = item.path;
+        proposal.labels = item.labels;
+        return proposal;
+      });
       this.filterProposal('');
     });
   }
@@ -178,9 +188,9 @@ export class AppComponent implements OnInit {
    * 查詢歷史發布
    */
   onQueryHistoryClick(proposal: Proposal): void {
-    this.showProposalHistoryModal = true;
     this.service.queryHistory(proposal.trello_id).subscribe(res => {
       this.historyList = res;
+      this.showProposalHistoryModal = true;
     });
   }
 
@@ -206,5 +216,16 @@ export class AppComponent implements OnInit {
       item.customer.indexOf(event) > -1 ||
       item.labels.findIndex(label => label.name.indexOf(event) > -1) > -1
     );
+  }
+
+  /**
+   * 將發布日期從 UTC 格式轉為可閱讀格式
+   */
+  getReleaseDate(dateString: string): string {
+    return new Date(dateString).toFormatString('YYYY/MM/DD hh:mm:ss');
+  }
+
+  getLabelNames(labels: ProposalLabel[]): string {
+    return labels.map(item => item.name).join('、');
   }
 }

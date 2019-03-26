@@ -19,12 +19,11 @@ $color-red: #F00;
   width: $max-width;
 
   .proposal-actions {
-    button {
-      margin: $space-unit;
+    text-align: center;
 
-      &:first-child {
-        margin-left: 0;
-      }
+    >button,
+    >a {
+      margin-right: $space-unit;
 
       &:last-child {
         margin-right: 0;

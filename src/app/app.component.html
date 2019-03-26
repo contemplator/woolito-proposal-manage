@@ -26,17 +26,27 @@
         <ng-container *ngFor="let col of columns">
           <ng-container [ngSwitch]="col.field">
             <td *ngSwitchCase="'trello_name'">
-              <a [href]="rowData.path" target="_blank">{{ rowData.trello_name }}</a>
+              <ng-container *ngIf="rowData.path">
+                <a [href]="'http://www.woooplay.com/proposal/' + rowData.trello_id" target="_blank">{{ rowData.trello_name }}</a>
+              </ng-container>
+              <ng-container *ngIf="!rowData.path">
+                {{ rowData.trello_name }}
+              </ng-container>
+            </td>
+            <td *ngSwitchCase="'release_date'">
+              {{ getReleaseDate(rowData.release_date) }}
             </td>
             <td *ngSwitchCase="'labels'">
-              <span class="label-item" *ngFor="let item of rowData.labels">{{ item.name }}</span>
+              {{ getLabelNames(rowData.labels) }}
             </td>
             <td *ngSwitchCase="'actions'">
               <div class="proposal-actions">
-                <button pButton type="button" label="發布" (click)="onReleaseClick(rowData)"></button>
-                <a [href]="'http://woooplay.com/proposal-dev/#/' + rowData.trello_id" target="_blank"><button pButton type="button" label="預覽"></button></a>
-                <button pButton type="button" label="查看發布歷史" (click)="onQueryHistoryClick(rowData)"></button>
-                <button pButton type="button" label="編輯" (click)="onEditProposalClick(rowData)"></button>
+                <a [href]="'http://woooplay.com/proposal-dev/#/' + rowData.trello_id" target="_blank">
+                  <button pButton class="ui-button-info" type="button" label="預覽"></button>
+                </a>
+                <button pButton class="ui-button-info" type="button" label="查看發布歷史" (click)="onQueryHistoryClick(rowData)"></button>
+                <button pButton class="ui-button-warning" type="button" label="編輯" (click)="onEditProposalClick(rowData)"></button>
+                <button pButton class="ui-button-danger" type="button" [label]="rowData.releasing === false ? '發布' : '發布中...'" (click)="onReleaseClick(rowData)" [disabled]="rowData.releasing === true"></button>
               </div>
             </td>
             <td *ngSwitchDefault>{{ rowData[col.field] }}</td>
@@ -103,7 +113,10 @@
         <ng-container *ngFor="let col of columns">
           <ng-container [ngSwitch]="col.field">
             <td *ngSwitchCase="'path'">
-              <a [href]="rowData[col.field]">{{ rowData[col.field] }}</a>
+              <a [href]="rowData[col.field]" target="_blank">{{ rowData[col.field] }}</a>
+            </td>
+            <td *ngSwitchCase="'release_date'">
+              {{ getReleaseDate(rowData[col.field]) }}
             </td>
             <td *ngSwitchDefault>{{ rowData[col.field] }}</td>
           </ng-container>
