@@ -222,7 +222,7 @@ export class AppComponent implements OnInit {
    * 將發布日期從 UTC 格式轉為可閱讀格式
    */
   getReleaseDate(dateString: string): string {
-    return new Date(dateString).toFormatString('YYYY/MM/DD hh:mm:ss');
+    return dateString ? new Date(dateString).toFormatString('YYYY/MM/DD hh:mm:ss') : '';
   }
 
   getLabelNames(labels: ProposalLabel[]): string {
