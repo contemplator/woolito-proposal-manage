@@ -6,11 +6,11 @@ import { ProposalLabel, ProposalTrello } from './proposal';
 
 @Injectable({ providedIn: 'root' })
 export class AppService {
-  host = 'http://66.42.58.237:3000/proposal/';
+  host = 'http://45.76.213.205:3000/proposal/';
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
-      this.host = 'proposal';
+      this.host = 'proposal/';
     }
   }
 
@@ -46,7 +46,7 @@ export class AppService {
    * 取得所有提案企劃
    */
   query(): Observable<any> {
-    const url = this.host + '/query'
+    const url = this.host + 'query'
     return this.get(url);
   }
 
@@ -54,7 +54,7 @@ export class AppService {
    * 取得所有標籤
    */
   fetchLabelList(): Observable<ProposalLabel[]>{
-    const url = this.host + '/fetchLabelList';
+    const url = this.host + 'fetchLabelList';
     return this.get(url);
   }
 
@@ -62,7 +62,7 @@ export class AppService {
    * 新增提案企劃
    */
   addProposal(data: ProposalTrello): Observable<boolean>{
-    const url = this.host + '/add';
+    const url = this.host + 'add';
     return this.post(url, data);
   }
 
@@ -70,7 +70,7 @@ export class AppService {
    * 發布新版本
    */
   release(id: string): Observable<string>{
-    const url = this.host + '/release/' + id;
+    const url = this.host + 'release/' + id;
     return this.get(url);
   }
 
@@ -78,7 +78,7 @@ export class AppService {
    * 查詢歷史發布
    */
   queryHistory(id: string): Observable<any>{
-    const url = this.host + '/queryHistory/' + id;
+    const url = this.host + 'queryHistory/' + id;
     return this.get(url);
   }
 
@@ -86,7 +86,7 @@ export class AppService {
    * 修改提案企劃
    */
   updateProposal(data: ProposalTrello): Observable<boolean>{
-    const url = this.host + '/update';
+    const url = this.host + 'update';
     return this.post(url, data);
   }
 
